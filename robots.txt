@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wuut-liggey.github.io/sitemap.xml
+
+# Wuut Liggey — Emploi au Sénégal
+# https://wuut-liggey.github.io
