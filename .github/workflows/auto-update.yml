@@ -1,0 +1,92 @@
+name: 🔄 Wuut Liggey — Auto Update Jobs
+
+on:
+  # Run automatically every day at 8:00 AM UTC (9:00 AM Dakar time)
+  schedule:
+    - cron: "0 8 * * *"
+
+  # Allow manual trigger from GitHub Actions tab
+  workflow_dispatch:
+    inputs:
+      force_fetch:
+        description: "Force fetch even if daily limit reached"
+        required: false
+        default: "false"
+        type: boolean
+
+jobs:
+  update-jobs:
+    name: Fetch, Generate & Deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 📡 Fetch RSS Feeds
+        run: node scripts/fetch-rss.js
+        env:
+          FORCE_FETCH: ${{ github.event.inputs.force_fetch }}
+
+      - name: 🤖 AI Content Generation
+        run: node scripts/generate-ai.js
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+      - name: 📄 Generate Static Pages & Sitemap
+        run: node scripts/generate-pages.js
+
+      - name: 🏗️ Build React App
+        run: npm run build
+
+      - name: 📊 Check for changes
+        id: check_changes
+        run: |
+          git add -A
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  No new content to publish"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "✅ New content detected"
+          fi
+
+      - name: 💾 Commit & Push changes
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "Wuut Liggey Bot"
+          git config user.email "bot@wuut-liggey.sn"
+          git add -A
+          git commit -m "🤖 Auto-update: $(date '+%Y-%m-%d %H:%M') — New job offers added"
+          git push
+
+      - name: 🚀 Deploy to GitHub Pages
+        if: steps.check_changes.outputs.has_changes == 'true'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          cname: wuut-liggey.sn
+
+      - name: 📋 Summary
+        run: |
+          echo "## 🚀 Wuut Liggey Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Date**: $(date '+%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ✅ Complete" >> $GITHUB_STEP_SUMMARY
+          JOB_COUNT=$(cat public/data/jobs.json | python3 -c "import sys,json; print(len(json.load(sys.stdin)))" 2>/dev/null || echo "N/A")
+          echo "- **Total jobs**: $JOB_COUNT" >> $GITHUB_STEP_SUMMARY
