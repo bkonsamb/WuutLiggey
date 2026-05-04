@@ -1,0 +1,313 @@
+/* Wuut Liggey — Static Job Page Styles */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* HEADER */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.logo-icon { font-size: 1.5rem; }
+.logo-name { font-size: 1.1rem; font-weight: 700; color: #111827; display: block; }
+.logo-sub { font-size: 0.65rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-top: -2px; }
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #f0fdf4;
+  color: #16a34a;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.back-btn:hover { background: #dcfce7; }
+
+/* BREADCRUMB */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin: 2rem 0 1.5rem;
+  flex-wrap: wrap;
+}
+.breadcrumb a { color: #9ca3af; text-decoration: none; }
+.breadcrumb a:hover { color: #16a34a; }
+.breadcrumb span:last-child { color: #374151; font-weight: 500; }
+
+/* MAIN */
+.main-content { padding: 0 0 4rem; }
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .content-grid { grid-template-columns: 1fr; }
+}
+
+/* JOB HERO */
+.job-hero {
+  position: relative;
+  height: 280px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+}
+.hero-badges { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.92);
+}
+.badge-type { color: #16a34a; }
+.badge-cat { color: #1d4ed8; }
+.hero-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1.25;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+@media (max-width: 640px) { .hero-title { font-size: 1.25rem; } }
+
+/* COMPANY BAR */
+.company-bar {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.company-info { display: flex; align-items: center; gap: 1rem; }
+.company-avatar {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  color: #065f46;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.company-name { font-weight: 700; color: #111827; font-size: 1rem; }
+.company-cat { font-size: 0.8rem; color: #6b7280; }
+.meta-list { display: flex; flex-wrap: wrap; gap: 1rem; }
+.meta-item { font-size: 0.85rem; color: #6b7280; display: flex; align-items: center; gap: 0.375rem; }
+
+/* AD SLOT */
+.ad-slot {
+  background: #f8fafc;
+  border: 2px dashed #e2e8f0;
+  border-radius: 1rem;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.ad-placeholder { font-size: 0.75rem; color: #94a3b8; text-align: center; }
+.ad-slot-sidebar {
+  background: #f8fafc;
+  border: 2px dashed #e2e8f0;
+  border-radius: 1rem;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* JOB DESCRIPTION */
+.job-description {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.job-description h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 2rem 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #d1fae5;
+}
+.job-description h2:first-child { margin-top: 0; }
+.job-description h3 { font-size: 1rem; font-weight: 600; color: #1f2937; margin: 1.5rem 0 0.5rem; }
+.job-description p { color: #4b5563; font-size: 0.9375rem; line-height: 1.75; margin-bottom: 0.75rem; }
+.job-description ul { list-style: none; margin: 0.5rem 0 1rem; }
+.job-description li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: #4b5563;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 0.375rem;
+}
+.bullet { color: #10b981; font-size: 0.75rem; margin-top: 0.35rem; flex-shrink: 0; }
+.job-description strong { color: #111827; font-weight: 600; }
+
+/* TAGS */
+.tags-section {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.tags-section h3 { font-size: 0.8rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tag {
+  padding: 0.375rem 0.875rem;
+  background: #f0fdf4;
+  color: #16a34a;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: 1px solid #bbf7d0;
+}
+
+/* SHARE */
+.share-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.25rem;
+  background: #f8fafc;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+}
+.share-section p { font-size: 0.85rem; font-weight: 600; color: #374151; }
+.share-btn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.share-btn:hover { opacity: 0.85; }
+.share-wa { background: #22c55e; color: white; }
+.share-li { background: #2563eb; color: white; }
+
+/* SIDEBAR */
+.apply-card, .summary-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.apply-card h3 { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 0.375rem; }
+.apply-card p { font-size: 0.85rem; color: #6b7280; margin-bottom: 1.25rem; }
+.apply-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.875rem;
+  background: #16a34a;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 0.875rem;
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+  transition: background 0.15s;
+}
+.apply-btn:hover { background: #15803d; }
+.apply-btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.875rem;
+  text-decoration: none;
+  transition: border-color 0.15s;
+}
+.apply-btn-secondary:hover { border-color: #16a34a; color: #16a34a; }
+.summary-card h3 { font-size: 0.8rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
+.summary-card dl { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1rem; align-items: baseline; }
+.summary-card dt { font-size: 0.75rem; color: #94a3b8; font-weight: 500; }
+.summary-card dd { font-size: 0.875rem; color: #111827; font-weight: 600; }
+
+/* FOOTER */
+.site-footer {
+  background: #111827;
+  color: #6b7280;
+  padding: 2rem 0;
+  margin-top: 3rem;
+  text-align: center;
+}
+.site-footer p { font-size: 0.85rem; }
+.site-footer a { color: #10b981; text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
