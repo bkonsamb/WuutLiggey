@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wuut-liggey.github.io/sitemap.xml
+
+# Wuut Liggey — Emploi au Sénégal
+# Plateforme d'offres d'emploi au Sénégal et en Afrique francophone
