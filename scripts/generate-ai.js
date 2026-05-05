@@ -14,7 +14,7 @@ const JOBS_PATH = join(ROOT, "public", "data", "jobs.json");
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
-const MODEL = "llama3-8b-8192";
+const MODEL = "llama-3.3-70b-versatile";
 
 const SYSTEM_PROMPT = `Tu es un rédacteur professionnel spécialisé dans les offres d'emploi en Afrique francophone.
 
