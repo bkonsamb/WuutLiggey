@@ -41,7 +41,8 @@ async function scrape() {
 
   const sources = [
     "https://www.emploi.sn/recherche-jobs",
-    "https://www.emploisenegal.com/offres-emploi"
+    "https://www.emploisenegal.com/offres-emploi",
+    "https://www.emploidakar.com/"
   ];
 
   for (let url of sources) {
